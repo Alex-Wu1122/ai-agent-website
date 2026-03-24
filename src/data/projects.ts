@@ -26,7 +26,6 @@ export const projects: Project[] = [
       "System Architecture",
       "Web App"
     ],
-    github: "https://github.com/Alex-Wu",
   },
   {
     id: "2",
@@ -52,7 +51,6 @@ export const projects: Project[] = [
       "Backend",
       "Data Pipeline"
     ],
-    github: "https://github.com/Alex-Wu",
   },
   {
     id: "3",
@@ -76,7 +74,6 @@ export const projects: Project[] = [
       "Edge Computing",
       "Systems"
     ],
-    github: "https://github.com/Alex-Wu",
   },
   {
     id: "4",
@@ -101,7 +98,6 @@ export const projects: Project[] = [
       "AI",
       "Data"
     ],
-    github: "https://github.com/Alex-Wu",
   },
   {
     id: "5",
@@ -124,6 +120,5 @@ export const projects: Project[] = [
       "AI",
       "Analytics"
     ],
-    github: "https://github.com/Alex-Wu",
   },
 ];
