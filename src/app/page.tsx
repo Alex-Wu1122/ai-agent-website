@@ -61,20 +61,17 @@ export default function Home() {
       <ModelStatus groqStatus={groqStatus} cerebrasStatus={cerebrasStatus} localStatus={localStatus} />
 
       {/* Nav */}
-      <nav className="flex items-center justify-between px-1 mb-2">
-        <span className="text-neutral-500 text-sm font-mono">portfolio.dev</span>
-        <div className="flex gap-4 text-sm text-neutral-400">
-          {(["about", "experience", "projects", "skills", "education"] as const).map((s) => (
-            <a
-              key={s}
-              href={`#${s}`}
-              onClick={() => setActiveSection(s)}
-              className="hover:text-white transition-colors capitalize"
-            >
-              {s}
-            </a>
-          ))}
-        </div>
+      <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-1 mb-2">
+        {(["about", "experience", "projects", "skills", "education"] as const).map((s) => (
+          <a
+            key={s}
+            href={`#${s}`}
+            onClick={() => setActiveSection(s)}
+            className="text-sm text-neutral-400 hover:text-white transition-colors capitalize"
+          >
+            {s}
+          </a>
+        ))}
       </nav>
 
       <Hero highlighted={activeSection === "about"} />
