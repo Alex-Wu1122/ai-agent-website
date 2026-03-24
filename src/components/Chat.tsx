@@ -37,7 +37,11 @@ const SUGGESTIONS = [
 ];
 
 export default function Chat({ onActions, onStatusEvent, groqStatus, cerebrasStatus, localStatus }: ChatProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth >= 768) setOpen(true);
+  }, []);
   const [history, setHistory] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -111,6 +115,7 @@ export default function Chat({ onActions, onStatusEvent, groqStatus, cerebrasSta
         onClick={() => setOpen((o) => !o)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg flex items-center justify-center text-2xl transition-all duration-200 hover:scale-110"
         aria-label="Open AI assistant"
+        suppressHydrationWarning
       >
         {open ? "×" : "✦"}
       </button>
