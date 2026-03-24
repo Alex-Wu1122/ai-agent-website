@@ -9,7 +9,6 @@ import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Chat from "@/components/Chat";
-import ModelStatus from "@/components/ModelStatus";
 
 type Section = "about" | "projects" | "skills" | "experience" | "education" | null;
 type Status = "idle" | "loading" | "active" | "failed";
@@ -57,9 +56,6 @@ export default function Home() {
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-10 flex flex-col gap-6 pb-32">
-      {/* Model status widget — fixed bottom-left */}
-      <ModelStatus groqStatus={groqStatus} cerebrasStatus={cerebrasStatus} localStatus={localStatus} />
-
       {/* Nav */}
       <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-1 mb-2">
         {(["about", "experience", "projects", "skills", "education"] as const).map((s) => (
@@ -85,7 +81,7 @@ export default function Home() {
       <Education highlighted={activeSection === "education"} />
 
       {/* AI Chat */}
-      <Chat onActions={applyUIActions} onStatusEvent={handleStatusEvent} />
+      <Chat onActions={applyUIActions} onStatusEvent={handleStatusEvent} groqStatus={groqStatus} cerebrasStatus={cerebrasStatus} localStatus={localStatus} />
     </main>
   );
 }

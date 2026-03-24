@@ -5,20 +5,38 @@ import type { ChatMessage, UIAction } from "@/types";
 import { profile } from "@/data/profile";
 
 type StatusEvent = { type: string; model?: string; status?: string; [k: string]: unknown };
+type Status = "idle" | "loading" | "active" | "failed";
+
+const DOT: Record<Status, string> = {
+  idle:    "bg-neutral-600",
+  loading: "bg-blue-400 animate-pulse",
+  active:  "bg-green-400",
+  failed:  "bg-yellow-500",
+};
+
+const LABEL: Record<Status, string> = {
+  idle:    "text-neutral-600",
+  loading: "text-blue-400",
+  active:  "text-green-400",
+  failed:  "text-yellow-500",
+};
 
 interface ChatProps {
   onActions: (actions: UIAction[]) => void;
   onStatusEvent?: (event: StatusEvent) => void;
+  groqStatus: Status;
+  cerebrasStatus: Status;
+  localStatus: Status;
 }
 
 const SUGGESTIONS = [
-  "Show me your AI-related projects",
+  "Show me your AI projects",
   "What's your most recent work experience?",
   "What languages and frameworks do you know?",
-  "Any ML or data projects?",
+  "What kind of backend systems have you built?",
 ];
 
-export default function Chat({ onActions, onStatusEvent }: ChatProps) {
+export default function Chat({ onActions, onStatusEvent, groqStatus, cerebrasStatus, localStatus }: ChatProps) {
   const [open, setOpen] = useState(true);
   const [history, setHistory] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -163,8 +181,33 @@ export default function Chat({ onActions, onStatusEvent }: ChatProps) {
           <div ref={bottomRef} />
         </div>
 
+        {/* Model status strip */}
+        <div className="px-4 py-2 border-t border-neutral-800 flex gap-6 items-center">
+          {([
+            { label: "Groq", status: groqStatus },
+            { label: "Cerebras", status: cerebrasStatus },
+            { label: "Local", status: localStatus },
+          ] as const).map(({ label, status }) => (
+            <span key={label} className="flex items-center gap-1.5">
+              <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${DOT[status]}`} />
+              <span className={`text-[10px] font-mono ${LABEL[status]}`}>
+                {label}
+                {status === "failed" && <span className="ml-1 opacity-70">(limit)</span>}
+              </span>
+              {status === "loading" && (
+                <span className="flex items-end gap-px h-3 flex-shrink-0">
+                  <span className="w-[3px] rounded-full bg-blue-400 animate-[modelbar_0.8s_ease-in-out_infinite]"        style={{ height: "60%" }} />
+                  <span className="w-[3px] rounded-full bg-blue-400 animate-[modelbar_0.8s_ease-in-out_0.2s_infinite]"  style={{ height: "100%" }} />
+                  <span className="w-[3px] rounded-full bg-blue-400 animate-[modelbar_0.8s_ease-in-out_0.4s_infinite]"  style={{ height: "40%" }} />
+                  <span className="w-[3px] rounded-full bg-blue-400 animate-[modelbar_0.8s_ease-in-out_0.1s_infinite]"  style={{ height: "80%" }} />
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+
         {/* Input */}
-        <div className="px-3 py-3 border-t border-neutral-800 flex gap-2">
+        <div className="px-3 py-3 flex gap-2">
           <input
             type="text"
             value={input}
