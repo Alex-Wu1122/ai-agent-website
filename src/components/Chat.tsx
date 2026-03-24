@@ -220,7 +220,7 @@ export default function Chat({ onActions, onStatusEvent, groqStatus, cerebrasSta
             onKeyDown={(e) => e.key === "Enter" && send(input)}
             placeholder="Ask a question..."
             disabled={loading}
-            className="flex-1 bg-neutral-800 rounded-xl px-3.5 py-2 text-sm text-white placeholder-neutral-500 outline-none border border-transparent focus:border-blue-600 transition-colors disabled:opacity-50"
+            className="flex-1 bg-neutral-800 rounded-xl px-3.5 py-2 text-base md:text-sm text-white placeholder-neutral-500 outline-none border border-transparent focus:border-blue-600 transition-colors disabled:opacity-50"
           />
           <button
             onClick={() => send(input)}
