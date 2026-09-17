@@ -212,7 +212,7 @@ async function callModel(
 type StatusCallback = (model: ModelSource, status: "loading" | "failed") => void;
 
 const MODEL_CHAIN: { client: OpenAI; model: string; source: ModelSource; toolChoice: "required" | "auto" }[] = [
-  { client: groqClient,     model: GROQ_MODEL,     source: "groq",     toolChoice: "required" },
+  // { client: groqClient,     model: GROQ_MODEL,     source: "groq",     toolChoice: "required" }, // temporarily disabled to test Cerebras fallback
   { client: cerebrasClient, model: CEREBRAS_MODEL, source: "cerebras", toolChoice: "required" },
   { client: localClient,    model: LOCAL_MODEL,    source: "local",    toolChoice: "required" },
 ];
