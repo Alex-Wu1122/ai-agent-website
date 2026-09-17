@@ -60,7 +60,7 @@ export default function ModelStatus({ groqStatus, cerebrasStatus, localStatus }:
         <span className="text-[10px] uppercase tracking-widest text-neutral-600 font-mono mb-0.5">
           Models
         </span>
-        <ModelRow status={groqStatus}     name="Groq · llama-3.3-70b"  latency="" />
+        <ModelRow status={groqStatus}     name="Groq · gpt-oss-120b"  latency="" />
         <ModelRow status={cerebrasStatus} name="Cerebras · llama3.1-8b" latency="" />
         <ModelRow status={localStatus}    name="Local · qwen2.5-7b"     latency="< 30s" />
       </div>

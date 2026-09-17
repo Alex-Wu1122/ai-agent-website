@@ -23,7 +23,7 @@ const localClient = new OpenAI({
   baseURL: process.env.LOCAL_MODEL_URL,
 });
 
-const GROQ_MODEL = "llama-3.3-70b-versatile";
+const GROQ_MODEL = "openai/gpt-oss-120b";
 const CEREBRAS_MODEL = "llama3.1-8b";
 const LOCAL_MODEL = "qwen2.5-7b-instruct-1m";
 
