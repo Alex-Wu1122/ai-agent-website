@@ -24,7 +24,7 @@ const localClient = new OpenAI({
 });
 
 const GROQ_MODEL = "openai/gpt-oss-120b";
-const CEREBRAS_MODEL = "llama3.1-8b";
+const CEREBRAS_MODEL = "gpt-oss-120b";
 const LOCAL_MODEL = "qwen2.5-7b-instruct-1m";
 
 // ─── Compact markdown formatters ───────────────────────────────────────────────
