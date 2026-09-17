@@ -25,7 +25,7 @@ interface ChatProps {
   onActions: (actions: UIAction[]) => void;
   onStatusEvent?: (event: StatusEvent) => void;
   groqStatus: Status;
-  cerebrasStatus: Status;
+  openrouterStatus: Status;
   localStatus: Status;
 }
 
@@ -36,7 +36,7 @@ const SUGGESTIONS = [
   "What kind of backend systems have you built?",
 ];
 
-export default function Chat({ onActions, onStatusEvent, groqStatus, cerebrasStatus, localStatus }: ChatProps) {
+export default function Chat({ onActions, onStatusEvent, groqStatus, openrouterStatus, localStatus }: ChatProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -190,7 +190,7 @@ export default function Chat({ onActions, onStatusEvent, groqStatus, cerebrasSta
         <div className="px-4 py-2 border-t border-neutral-800 flex gap-6 items-center">
           {([
             { label: "Groq", status: groqStatus },
-            { label: "Cerebras", status: cerebrasStatus },
+            { label: "OpenRouter", status: openrouterStatus },
             { label: "Local", status: localStatus },
           ] as const).map(({ label, status }) => (
             <span key={label} className="flex items-center gap-1.5">

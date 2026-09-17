@@ -4,7 +4,7 @@ type Status = "idle" | "loading" | "active" | "failed";
 
 interface ModelStatusProps {
   groqStatus: Status;
-  cerebrasStatus: Status;
+  openrouterStatus: Status;
   localStatus: Status;
 }
 
@@ -47,7 +47,7 @@ function ModelRow({ status, name, latency }: { status: Status; name: string; lat
   );
 }
 
-export default function ModelStatus({ groqStatus, cerebrasStatus, localStatus }: ModelStatusProps) {
+export default function ModelStatus({ groqStatus, openrouterStatus, localStatus }: ModelStatusProps) {
   return (
     <>
       <style>{`
@@ -60,9 +60,9 @@ export default function ModelStatus({ groqStatus, cerebrasStatus, localStatus }:
         <span className="text-[10px] uppercase tracking-widest text-neutral-600 font-mono mb-0.5">
           Models
         </span>
-        <ModelRow status={groqStatus}     name="Groq · gpt-oss-120b"  latency="" />
-        <ModelRow status={cerebrasStatus} name="Cerebras · gpt-oss-120b" latency="" />
-        <ModelRow status={localStatus}    name="Local · qwen2.5-7b"     latency="< 30s" />
+        <ModelRow status={groqStatus}       name="Groq · gpt-oss-120b"        latency="" />
+        <ModelRow status={openrouterStatus} name="OpenRouter · qwen3.8-27b"   latency="" />
+        <ModelRow status={localStatus}      name="Local · qwen2.5-7b"         latency="< 30s" />
       </div>
     </>
   );

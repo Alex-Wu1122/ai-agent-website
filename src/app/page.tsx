@@ -16,20 +16,20 @@ type Status = "idle" | "loading" | "active" | "failed";
 export default function Home() {
   const [activeSection, setActiveSection] = useState<Section>(null);
   const [projectFilter, setProjectFilter] = useState<FilterProjectsAction["payload"] | null>(null);
-  const [groqStatus,     setGroqStatus]     = useState<Status>("idle");
-  const [cerebrasStatus, setCerebrasStatus] = useState<Status>("idle");
-  const [localStatus,    setLocalStatus]    = useState<Status>("idle");
+  const [groqStatus,       setGroqStatus]       = useState<Status>("idle");
+  const [openrouterStatus, setOpenrouterStatus] = useState<Status>("idle");
+  const [localStatus,      setLocalStatus]      = useState<Status>("idle");
 
   const setterFor = (model: string) => {
-    if (model === "groq")     return setGroqStatus;
-    if (model === "cerebras") return setCerebrasStatus;
+    if (model === "groq")       return setGroqStatus;
+    if (model === "openrouter") return setOpenrouterStatus;
     return setLocalStatus;
   };
 
   const handleStatusEvent = useCallback(
     (event: { type: string; model?: string; status?: string; [k: string]: unknown }) => {
       if (event.type === "reset") {
-        setGroqStatus("idle"); setCerebrasStatus("idle"); setLocalStatus("idle");
+        setGroqStatus("idle"); setOpenrouterStatus("idle"); setLocalStatus("idle");
       } else if (event.type === "status" && event.model) {
         setterFor(event.model)(event.status as Status);
       } else if (event.type === "result" && event.model) {
@@ -81,7 +81,7 @@ export default function Home() {
       <Education highlighted={activeSection === "education"} />
 
       {/* AI Chat */}
-      <Chat onActions={applyUIActions} onStatusEvent={handleStatusEvent} groqStatus={groqStatus} cerebrasStatus={cerebrasStatus} localStatus={localStatus} />
+      <Chat onActions={applyUIActions} onStatusEvent={handleStatusEvent} groqStatus={groqStatus} openrouterStatus={openrouterStatus} localStatus={localStatus} />
     </main>
   );
 }

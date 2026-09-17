@@ -52,7 +52,7 @@ export type UIAction =
 
 // ─── Agent I/O ─────────────────────────────────────────────────────────────────
 
-export type ModelSource = "groq" | "cerebras" | "local";
+export type ModelSource = "groq" | "openrouter" | "local";
 
 export interface AgentResponse {
   answer: string;

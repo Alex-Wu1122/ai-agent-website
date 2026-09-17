@@ -13,9 +13,9 @@ const groqClient = new OpenAI({
   baseURL: "https://api.groq.com/openai/v1",
 });
 
-const cerebrasClient = new OpenAI({
-  apiKey: process.env.CEREBRAS_API_KEY,
-  baseURL: "https://api.cerebras.ai/v1",
+const openrouterClient = new OpenAI({
+  apiKey: process.env.OPENROUTER_API_KEY,
+  baseURL: "https://openrouter.ai/api/v1",
 });
 
 const localClient = new OpenAI({
@@ -24,7 +24,7 @@ const localClient = new OpenAI({
 });
 
 const GROQ_MODEL = "openai/gpt-oss-120b";
-const CEREBRAS_MODEL = "gpt-oss-120b";
+const OPENROUTER_MODEL = "qwen/qwen3.8-27b:free";
 const LOCAL_MODEL = "qwen2.5-7b-instruct-1m";
 
 // ─── Compact markdown formatters ───────────────────────────────────────────────
@@ -212,9 +212,9 @@ async function callModel(
 type StatusCallback = (model: ModelSource, status: "loading" | "failed") => void;
 
 const MODEL_CHAIN: { client: OpenAI; model: string; source: ModelSource; toolChoice: "required" | "auto" }[] = [
-  // { client: groqClient,     model: GROQ_MODEL,     source: "groq",     toolChoice: "required" }, // temporarily disabled to test Cerebras fallback
-  { client: cerebrasClient, model: CEREBRAS_MODEL, source: "cerebras", toolChoice: "required" },
-  { client: localClient,    model: LOCAL_MODEL,    source: "local",    toolChoice: "required" },
+  // { client: groqClient,       model: GROQ_MODEL,       source: "groq",       toolChoice: "required" }, // temporarily disabled to test OpenRouter fallback
+  { client: openrouterClient, model: OPENROUTER_MODEL, source: "openrouter", toolChoice: "required" },
+  { client: localClient,      model: LOCAL_MODEL,      source: "local",      toolChoice: "required" },
 ];
 
 const HISTORY_LIMIT = 6;
