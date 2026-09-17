@@ -14,10 +14,12 @@ export const skills: SkillGroup[] = [
       "Node.js",
       "Git",
       "Docker",
+      "Kubernetes",
       "Maven",
       "GitLab CI/CD",
       "Linux",
-      "REST APIs"
+      "REST APIs",
+      "Prometheus"
     ],
   },
   {
@@ -30,7 +32,11 @@ export const skills: SkillGroup[] = [
       "Backend Development",
       "API Design",
       "System Design",
-      "Distributed Systems"
+      "Distributed Systems",
+      "Software Architecture",
+      "Software Design",
+      "Software Infrastructure",
+      "High Availability (HA)"
     ],
   },
   {
@@ -39,6 +45,7 @@ export const skills: SkillGroup[] = [
       "LLM",
       "Prompt Engineering",
       "Agent Systems",
+      "Multi-agent Systems",
       "LLM Evaluation",
       "SWE-Agent",
       "PyTorch",
