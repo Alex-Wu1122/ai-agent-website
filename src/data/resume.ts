@@ -4,13 +4,14 @@ export const experience: Experience[] = [
   {
     company: "MediaTek",
     role: "AI Systems Engineer Intern",
-    period: "Aug. 2026 – Sep. 2026",
+    period: "Jun. 2026 – Aug. 2026",
     bullets: [
       "Reduced a multi-step AI workflow from ~3 days of iterative human supervision to 5.3 hours of largely unattended execution by designing a code-orchestrated multi-agent system with independent Discovery, Execution, and Critic roles.",
       "Reduced token usage by 41% and improved wall-clock performance by 2.1x while increasing validated workflow output by 28% through isolated LLM contexts, parallel execution, structured memory, and deterministic orchestration.",
       "Improved autonomous-agent reliability by moving risk gating, stopping conditions, state management, and workflow control from LLM judgment into deterministic software components.",
-      "Achieved ~4-second automated database failover with minimal request impact and zero manual intervention using Kubernetes, PostgreSQL, Patroni, and Redis Sentinel.",
-      "Achieved zero-downtime upgrades and 100% data-integrity validation across dozens of repositories through rolling deployments, backup/restore validation, and Prometheus-based observability.",
+      "Redesigned a single-point Gitea service into a highly available platform using Kubernetes, Helm-based templated deployments, PostgreSQL/Patroni, and Redis Sentinel, with automatic failover across application, database, and cache layers.",
+      "Validated the HA architecture through live failure injection, rolling upgrades, and recovery testing, achieving ~4-second database failover, zero-downtime application upgrades, and zero data loss across 25 test repositories.",
+      "Built Prometheus/Grafana observability and backup/restore validation to monitor system health, verify recovery, and diagnose failures across application, database, Redis, and Sentinel layers."
     ],
   },
   {
